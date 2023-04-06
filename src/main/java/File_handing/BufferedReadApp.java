@@ -19,7 +19,5 @@ public class BufferedReadApp {
         }
         fileReader.close();
         bufferedReader.close();
-
-
     }
 }

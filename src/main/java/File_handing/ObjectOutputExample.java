@@ -1,7 +1,6 @@
 package File_handing;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class ObjectOutputExample {
     public static void main(String[] args) {
