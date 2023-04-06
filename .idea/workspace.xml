@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="Update :c">
-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectIOExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/User.java" afterDir="false" />
+    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="Update :V">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/MyRunnable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/RunnableSimple.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/SleepMethodExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/ThreadDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/ThreadDemoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/ThreadInfoExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/ThreadSimple.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/WorkingThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputStreamApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +62,13 @@
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.ObjectInputStreamApp">
-    <configuration name="FileChannelApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File_handing.FileChannelApp" />
+  <component name="RunManager" selected="Application.MyRunnable">
+    <configuration name="MyRunnable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple.MyRunnable" />
       <module name="HocLapTrinhJava-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="File_handing.*" />
+          <option name="PATTERN" value="Simple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -72,12 +76,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectIOExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectIOExample" />
+    <configuration name="SleepMethodExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple.SleepMethodExample" />
       <module name="HocLapTrinhJava-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="File_handing.*" />
+          <option name="PATTERN" value="Simple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,12 +89,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectInputStreamApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectInputStreamApp" />
+    <configuration name="ThreadDemoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple.ThreadDemoTest" />
       <module name="HocLapTrinhJava-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="File_handing.*" />
+          <option name="PATTERN" value="Simple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectOutputExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectOutputExample" />
+    <configuration name="ThreadInfoExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple.ThreadInfoExample" />
       <module name="HocLapTrinhJava-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="File_handing.*" />
+          <option name="PATTERN" value="Simple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,12 +115,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRead" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="File_handing.UserRead" />
+    <configuration name="WorkingThread" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple.WorkingThread" />
       <module name="HocLapTrinhJava-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="File_handing.*" />
+          <option name="PATTERN" value="Simple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ObjectInputStreamApp" />
-        <item itemvalue="Application.ObjectOutputExample" />
-        <item itemvalue="Application.ObjectIOExample" />
-        <item itemvalue="Application.UserRead" />
-        <item itemvalue="Application.FileChannelApp" />
+        <item itemvalue="Application.MyRunnable" />
+        <item itemvalue="Application.ThreadDemoTest" />
+        <item itemvalue="Application.SleepMethodExample" />
+        <item itemvalue="Application.ThreadInfoExample" />
+        <item itemvalue="Application.WorkingThread" />
       </list>
     </recent_temporary>
   </component>
@@ -142,13 +146,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669442060337</updated>
-    </task>
-    <task id="LOCAL-00015" summary="method update:d">
-      <created>1670467546066</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1670467546067</updated>
     </task>
     <task id="LOCAL-00016" summary=" for loop ex :v">
       <created>1670470556150</created>
@@ -486,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680754930829</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Update :V">
+      <created>1680765828532</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1680765828532</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,8 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ArrayList :v" />
-    <MESSAGE value="ArrayList :d" />
     <MESSAGE value="LinkedList :v" />
     <MESSAGE value="LinkedList :d" />
     <MESSAGE value="LinkedList update" />
@@ -542,7 +544,9 @@
     <MESSAGE value="Update :d" />
     <MESSAGE value="Update :v" />
     <MESSAGE value="Update :c" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update :c" />
+    <MESSAGE value="Update :D" />
+    <MESSAGE value="Update :V" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update :V" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
