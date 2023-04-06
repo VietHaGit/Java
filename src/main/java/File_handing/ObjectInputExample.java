@@ -10,12 +10,11 @@ public class ObjectInputExample {
     public static void main(String[] args) {
         try {
             //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu
-            FileInputStream fis = new FileInputStream("src/main/resources/fileTest123.txt");
+            FileInputStream fis = new FileInputStream("src/main/resources/fileTest124.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
             //Bước 2: Đọc dữ liệu
-            Stock sArr = (Stock) ois.readObject();
-//            Arrays.stream(sArr).forEach(System.out::println);
-            System.out.printf(sArr.toString());
+            Object object =ois.readObject();
+            System.out.println(object);
             //Bước 3: Đóng luồng
             fis.close();
             ois.close();

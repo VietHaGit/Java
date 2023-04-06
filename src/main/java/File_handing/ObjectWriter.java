@@ -7,15 +7,14 @@ import java.io.IOException;
 
 public class ObjectWriter {
     public static void main(String[] args) {
-        File file = new File("file.dat");
+        File file = new File("src/main/resources/file6.txt");
         boolean append = file.exists(); // if file exists then append, otherwise create new
 
         try (
                 FileOutputStream fout = new FileOutputStream(file, append);
                 AppendableObjectOutputStream oout = new AppendableObjectOutputStream(fout, append);
         ) {
-
-//            oout.writeObject(); // replace "..." with serializable object to be written
+            oout.writeObject(true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
