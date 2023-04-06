@@ -57,6 +57,7 @@ public class CsvWriterExample {
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter !!!");
             e.printStackTrace();
+
         } finally {
             try {
                 fileWriter.flush();

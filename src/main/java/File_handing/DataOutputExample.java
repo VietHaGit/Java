@@ -1,17 +1,14 @@
 package File_handing;
 
-import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class DataOutputExample {
     public static void main(String[] args) {
         try {
-            FileOutputStream file = new FileOutputStream("src/main/resources/fileTest2.txt");
+            FileOutputStream file = new FileOutputStream("src/main/resources/fileTest2.txt",true);
             DataOutputStream dataOutputStream = new DataOutputStream(file);
-            dataOutputStream.writeInt(100);
-            dataOutputStream.writeDouble(59);
+//            dataOutputStream.writeInt(4);
+            dataOutputStream.writeInt(5);
             file.close();
             dataOutputStream.close();
             System.out.println("done");
