@@ -17,7 +17,11 @@ public class MyRunnable implements Runnable{
         MyRunnable myRunnable = new MyRunnable();
         MyRunnable myRunnable1 = new MyRunnable();
         Thread thread = new Thread(myRunnable);
+        thread.setPriority(5);
+        thread.setName("abcd");
         Thread thread1 = new Thread(myRunnable1);
+        thread1.setPriority(1);
+        thread1.setName("def");
         Arrays.asList(thread,thread1).parallelStream().forEach(Thread::start);
     }
 
