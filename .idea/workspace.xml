@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="Update :V">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ExecutorService/Run.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ExecutorService/TestThreadPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Simple/TestMultiPriority1.java" afterDir="false" />
+    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="ThreadPool :d">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Simple/MyRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simple/MyRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Simple/WorkingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simple/WorkingThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ExecutorService/TestThreadPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExecutorService/TestThreadPool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669442060337</updated>
-    </task>
-    <task id="LOCAL-00017" summary=" for loop ex :c">
-      <created>1670471582733</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1670471582733</updated>
     </task>
     <task id="LOCAL-00018" summary="oop in java :d">
       <created>1670836268848</created>
@@ -488,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680777325968</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="ThreadPool :d">
+      <created>1680862598891</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1680862598891</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -519,8 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="LinkedList :v" />
-    <MESSAGE value="LinkedList :d" />
     <MESSAGE value="LinkedList update" />
     <MESSAGE value="LinkedList update :v" />
     <MESSAGE value="LinkedList update :d" />
@@ -544,7 +537,9 @@
     <MESSAGE value="Update :c" />
     <MESSAGE value="Update :D" />
     <MESSAGE value="Update :V" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update :V" />
+    <MESSAGE value="ThreadPool :v" />
+    <MESSAGE value="ThreadPool :d" />
+    <option name="LAST_COMMIT_MESSAGE" value="ThreadPool :d" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

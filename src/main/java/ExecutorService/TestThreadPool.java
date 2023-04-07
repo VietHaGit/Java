@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 public class TestThreadPool {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService executorService = Executors.newScheduledThreadPool(5);
+        ExecutorService executorService = Executors.newScheduledThreadPool(3);
 
 //        for (int i = 0; i < 10;i++){
 //            pool.submit(new Run(i));
@@ -24,13 +24,25 @@ public class TestThreadPool {
 //    }
 
 // ExecutorService using execute() method
-//        executorService.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                System.out.println("Asynchronous hihi");
-//            }
-//        });
-//        executorService.shutdown();
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Task1");
+            }
+        });
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Task2");
+            }
+        });
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Task3");
+            }
+        });
+        executorService.shutdown();
 
 
 //        executorService.submit(new Runnable() {
@@ -79,30 +91,32 @@ public class TestThreadPool {
 //
 //        executorService.shutdown();
 
+
+
 //ExecutorService using invokeAll() method
-        Set<Callable<String>> callables = new HashSet<Callable<String>>();
-        callables.add(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "task1";
-            }
-        });
-        callables.add(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "task2";
-            }
-        });
-        callables.add(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "task3";
-            }
-        });
-        List<Future<String>> futures = executorService.invokeAll(callables);
-        for (Future<String> future:futures){
-            System.out.println("future.get =" + future.get());
-        }
-        executorService.shutdown();
+//        Set<Callable<String>> callables = new HashSet<Callable<String>>();
+//        callables.add(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                return "task1";
+//            }
+//        });
+//        callables.add(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                return "task2";
+//            }
+//        });
+//        callables.add(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                return "task3";
+//            }
+//        });
+//        List<Future<String>> futures = executorService.invokeAll(callables);
+//        for (Future<String> future:futures){
+//            System.out.println("future.get =" + future.get());
+//        }
+//        executorService.shutdown();
     }
 }

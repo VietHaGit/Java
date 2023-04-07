@@ -1,0 +1,669 @@
+Index: src/main/java/CSV/CsvWriterExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package CSV;\r\n\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class CsvWriterExample {\r\n    // Delimiter used in CSV file\r\n    private static final String COMMA_DELIMITER = \",\";\r\n    private static final String NEW_LINE_SEPARATOR = \"\\n\";\r\n\r\n    // CSV file header\r\n    private static final String FILE_HEADER = \"id,code,name\";\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String fileName = \"src/main/resources/fileTest4.txt\";\r\n        writeCsvFile(fileName);\r\n    }\r\n\r\n    public static void writeCsvFile(String fileName) {\r\n        // Create new Countrys objects\r\n        Country country1 = new Country(1, \"US\", \"United States\");\r\n        Country country2 = new Country(2, \"VN\", \"Viet Nam\");\r\n        Country country3 = new Country(3, \"AU\", \"Australia\");\r\n\r\n        // Create a new list of Country objects\r\n        List<Country> countries = new ArrayList<>();\r\n        countries.add(country1);\r\n        countries.add(country2);\r\n        countries.add(country3);\r\n\r\n        FileWriter fileWriter = null;\r\n\r\n        try {\r\n            fileWriter = new FileWriter(fileName);\r\n\r\n            // Write the CSV file header\r\n            fileWriter.append(FILE_HEADER);\r\n\r\n            // Add a new line separator after the header\r\n            fileWriter.append(NEW_LINE_SEPARATOR);\r\n\r\n            // Write a new Country object list to the CSV file\r\n            for (Country country : countries) {\r\n                fileWriter.append(String.valueOf(country.getId()));\r\n                fileWriter.append(COMMA_DELIMITER);\r\n                fileWriter.append(country.getCode());\r\n                fileWriter.append(COMMA_DELIMITER);\r\n                fileWriter.append(country.getName());\r\n                fileWriter.append(NEW_LINE_SEPARATOR);\r\n            }\r\n\r\n            System.out.println(\"CSV file was created successfully !!!\");\r\n\r\n        } catch (Exception e) {\r\n            System.out.println(\"Error in CsvFileWriter !!!\");\r\n            e.printStackTrace();\r\n        } finally {\r\n            try {\r\n                fileWriter.flush();\r\n                fileWriter.close();\r\n            } catch (IOException e) {\r\n                System.out.println(\"Error while flushing/closing fileWriter !!!\");\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/CSV/CsvWriterExample.java b/src/main/java/CSV/CsvWriterExample.java
+--- a/src/main/java/CSV/CsvWriterExample.java	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/java/CSV/CsvWriterExample.java	(date 1680686153337)
+@@ -57,6 +57,7 @@
+         } catch (Exception e) {
+             System.out.println("Error in CsvFileWriter !!!");
+             e.printStackTrace();
++
+         } finally {
+             try {
+                 fileWriter.flush();
+Index: src/main/java/CSV/ApacheCsvReaderExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/CSV/ApacheCsvReaderExample.java b/src/main/java/CSV/ApacheCsvReaderExample.java
+new file mode 100644
+--- /dev/null	(date 1680684980782)
++++ b/src/main/java/CSV/ApacheCsvReaderExample.java	(date 1680684980782)
+@@ -0,0 +1,31 @@
++package CSV;
++
++import org.apache.commons.csv.CSVFormat;
++import org.apache.commons.csv.CSVParser;
++import org.apache.commons.csv.CSVRecord;
++
++import java.io.FileReader;
++import java.io.FilterReader;
++import java.io.IOException;
++import java.io.Reader;
++
++public class ApacheCsvReaderExample {
++    public static void main(String[] args)
++            throws Exception {
++        String csvFile = "src/main/resources/fileTest4.txt";
++        try {
++            Reader reader = new FileReader(csvFile);
++            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
++            {
++                Iterable<CSVRecord> csvRecords = csvParser.getRecords();
++                for (CSVRecord csvRecord : csvRecords) {
++                    System.out.println("Country [id= " + csvRecord.get(0)
++                            + ", code= " + csvRecord.get(1)
++                            + " , name=" + csvRecord.get(2) + "]");
++                }
++            }
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++    }
++}
+Index: src/main/java/File_handing/DataInputExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package File_handing;\r\nimport java.io.*;\r\n\r\npublic class DataInputExample {\r\n    public static void main(String[] args) {\r\n        try {\r\n            FileInputStream fileInputStream = new FileInputStream(\"src/main/resources/fileTest2.txt\");\r\n            DataInputStream dataInputStream = new DataInputStream(fileInputStream);\r\n            int n = dataInputStream.readInt();\r\n            double m = dataInputStream.readDouble();\r\n            fileInputStream.close();\r\n            dataInputStream.close();\r\n            System.out.println(\"So nguyen\" + n);\r\n            System.out.println(\"So thuc\" + m);\r\n        }\r\n        catch (IOException  exception){\r\n            exception.printStackTrace();\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/DataInputExample.java b/src/main/java/File_handing/DataInputExample.java
+--- a/src/main/java/File_handing/DataInputExample.java	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/java/File_handing/DataInputExample.java	(date 1680690081230)
+@@ -7,11 +7,9 @@
+             FileInputStream fileInputStream = new FileInputStream("src/main/resources/fileTest2.txt");
+             DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+             int n = dataInputStream.readInt();
+-            double m = dataInputStream.readDouble();
+             fileInputStream.close();
+             dataInputStream.close();
+-            System.out.println("So nguyen" + n);
+-            System.out.println("So thuc" + m);
++            System.out.println("So nguyen: " + n);
+         }
+         catch (IOException  exception){
+             exception.printStackTrace();
+Index: src/main/java/File_handing/ObjectInputExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package File_handing;\r\n\r\nimport java.io.FileInputStream;\r\nimport java.io.IOException;\r\nimport java.io.ObjectInputStream;\r\n\r\npublic class ObjectInputExample {\r\n    public static void main(String[] args) {\r\n        try {\r\n            //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu\r\n            FileInputStream fis = new FileInputStream(\"src/main/resources/fileTest3.txt\");\r\n            ObjectInputStream ois = new ObjectInputStream(fis);\r\n            //Bước 2: Đọc dữ liệu\r\n            Stock sArr[] = (Stock[]) ois.readObject();\r\n            for(Stock s : sArr){\r\n                System.out.println(s.toString());\r\n            }\r\n            //Bước 3: Đóng luồng\r\n            fis.close();\r\n            ois.close();\r\n        } catch (Exception ex) {\r\n            System.out.println(\"Loi doc file: \"+ex);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/ObjectInputExample.java b/src/main/java/File_handing/ObjectInputExample.java
+--- a/src/main/java/File_handing/ObjectInputExample.java	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/java/File_handing/ObjectInputExample.java	(date 1680689600916)
+@@ -3,18 +3,19 @@
+ import java.io.FileInputStream;
+ import java.io.IOException;
+ import java.io.ObjectInputStream;
++import java.util.Arrays;
++import java.util.Comparator;
+ 
+ public class ObjectInputExample {
+     public static void main(String[] args) {
+         try {
+             //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu
+-            FileInputStream fis = new FileInputStream("src/main/resources/fileTest3.txt");
++            FileInputStream fis = new FileInputStream("src/main/resources/fileTest123.txt");
+             ObjectInputStream ois = new ObjectInputStream(fis);
+             //Bước 2: Đọc dữ liệu
+-            Stock sArr[] = (Stock[]) ois.readObject();
+-            for(Stock s : sArr){
+-                System.out.println(s.toString());
+-            }
++            Stock sArr = (Stock) ois.readObject();
++//            Arrays.stream(sArr).forEach(System.out::println);
++            System.out.printf(sArr.toString());
+             //Bước 3: Đóng luồng
+             fis.close();
+             ois.close();
+Index: src/main/resources/fileTest3.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>��\u0000\u0005ur\u0000\u0015[LFile_handing.Stock;n�f���7�\u0002\u0000\u0000xp\u0000\u0000\u0000\u0003sr\u0000\u0012File_handing.StockJHB�\u0004k�t\u0002\u0000\u0004I\u0000\u0002idD\u0000\u0005priceI\u0000\bquantityL\u0000\u0004desct\u0000\u0012Ljava/lang/String;xp\u0000\u0000\u0000\u0001@Y\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002t\u0000\u0006CD ROMsq\u0000~\u0000\u0002\u0000\u0000\u0000\u0002@\u007F@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002t\u0000\u0003CPUsq\u0000~\u0000\u0002\u0000\u0000\u0000\u0003@R�\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001t\u0000\nHP Scanner
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/fileTest3.txt b/src/main/resources/fileTest3.txt
+--- a/src/main/resources/fileTest3.txt	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/resources/fileTest3.txt	(date 1680687750597)
+@@ -1,2 +1,6 @@
+-�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
+-HP Scanner
+\ No newline at end of file
++�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
++HP Scannersq ~    @i         t DELL�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
++HP Scannersq ~    @i         t DELL�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
++HP Scannersq ~    @i         t DELL�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
++HP Scannersq ~    @i         t DELL�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROMsq ~    @@        t CPUsq ~    @R�        t 
++HP Scannersq ~    @i         t DELL�� ur [LFile_handing.Stock;n�f���7�  xp   sr File_handing.StockJHB�k�t I idD priceI quantityL desct Ljava/lang/String;xp   @Y         t CD ROM
+\ No newline at end of file
+Index: src/main/resources/fileTest2.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\u0000\u0000\u0000d@M�\u0000\u0000\u0000\u0000\u0000
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/fileTest2.txt b/src/main/resources/fileTest2.txt
+--- a/src/main/resources/fileTest2.txt	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/resources/fileTest2.txt	(date 1680690323771)
+@@ -1,1 +1,1 @@
+-   d@M�     
+\ No newline at end of file
++            
+\ No newline at end of file
+Index: src/main/java/File_handing/ObjectOutputStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/ObjectOutputStream.java b/src/main/java/File_handing/ObjectOutputStream.java
+new file mode 100644
+--- /dev/null	(date 1680692161364)
++++ b/src/main/java/File_handing/ObjectOutputStream.java	(date 1680692161364)
+@@ -0,0 +1,20 @@
++package File_handing;
++import java.io.FileOutputStream;
++import java.io.*;
++
++//public class ObjectOutputStream {
++//    public static void main(String[] args) {
++//        try(FileWriter fw = new FileWriter("src/main/resources/myfile.txt", true);
++//            BufferedWriter bw = new BufferedWriter(fw);
++//            PrintWriter out = new PrintWriter(bw))
++//        {
++//            out.println("the text");
++//            //more code
++//            out.println("more text");
++//            //more code
++//            out.println("finally!");
++//        } catch (IOException e) {
++//            //exception handling left as an exercise for the reader
++//        }
++//    }
++//}
+Index: src/main/java/File_handing/ObjectInputStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/ObjectInputStream.java b/src/main/java/File_handing/ObjectInputStream.java
+new file mode 100644
+--- /dev/null	(date 1680691521870)
++++ b/src/main/java/File_handing/ObjectInputStream.java	(date 1680691521870)
+@@ -0,0 +1,20 @@
++package File_handing;
++import java.io.*;
++public class ObjectInputStream {
++    public static void main(String[] args) {
++        try {
++            File file = new File("src/main/resources/myfile.txt");
++            FileReader fileReader = new FileReader(file);
++            BufferedReader bufferedReader = new BufferedReader(fileReader);
++            String line;
++            while ((line = bufferedReader.readLine()) != null){
++                System.out.println(line.toString());
++            }
++            fileReader.close();
++            bufferedReader.close();
++        }
++        catch (IOException exception){
++            System.out.println("Loi doc file" + exception);
++        }
++    }
++    }
+Index: src/main/java/CSV/ApacheCsvWriterExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/CSV/ApacheCsvWriterExample.java b/src/main/java/CSV/ApacheCsvWriterExample.java
+new file mode 100644
+--- /dev/null	(date 1680684273876)
++++ b/src/main/java/CSV/ApacheCsvWriterExample.java	(date 1680684273876)
+@@ -0,0 +1,25 @@
++package CSV;
++
++import org.apache.commons.csv.CSVFormat;
++import org.apache.commons.csv.CSVPrinter;
++
++import java.io.BufferedWriter;
++import java.io.FileWriter;
++import java.io.FilterWriter;
++import java.io.IOException;
++
++public class ApacheCsvWriterExample {
++    public static void main(String[] args)
++            throws IOException {
++        String csvFile = "src/main/resources/fileTest5.txt";
++        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
++             CSVPrinter csvPrinter = new CSVPrinter(writer,
++                     CSVFormat.DEFAULT.withHeader("id", "code", "name"));) {
++            csvPrinter.printRecord("1", "US", "United States");
++            csvPrinter.printRecord("2", "VN", "Viet Nam");
++            csvPrinter.printRecord("3", "AU", "Australia");
++            csvPrinter.printRecord("4","BU","Nga");
++            csvPrinter.flush();
++        }
++    }
++}
+Index: src/main/java/File_handing/ObjectOutputExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package File_handing;\r\n\r\nimport java.io.*;\r\n\r\npublic class ObjectOutputExample {\r\n    public static void main(String[] args) {\r\n        try {\r\n            //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu\r\n            FileOutputStream fos = new FileOutputStream(\"src/main/resources/fileTest3.txt\");\r\n            ObjectOutputStream oos = new ObjectOutputStream(fos);\r\n            //Khai báo mảng\r\n            Stock s[] = {\r\n                    new Stock(1, \"CD ROM\", 100, 2)\r\n                    ,new Stock(2, \"CPU\", 500, 2)\r\n                    ,new Stock(3, \"HP Scanner\", 75, 1)\r\n            };\r\n            //Bước 2: Ghi mảng đối tượng vào file\r\n            oos.writeObject(s);\r\n            //Bước 3: Đóng luồng\r\n            fos.close();\r\n            oos.close();\r\n            System.out.println(\"done!\");\r\n        } catch (IOException ex) {\r\n            System.out.println(\"Loi ghi file: \"+ex);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/ObjectOutputExample.java b/src/main/java/File_handing/ObjectOutputExample.java
+--- a/src/main/java/File_handing/ObjectOutputExample.java	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/java/File_handing/ObjectOutputExample.java	(date 1680692161360)
+@@ -1,21 +1,21 @@
+ package File_handing;
+ 
+ import java.io.*;
++import java.util.Arrays;
+ 
+ public class ObjectOutputExample {
+     public static void main(String[] args) {
+         try {
+             //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu
+-            FileOutputStream fos = new FileOutputStream("src/main/resources/fileTest3.txt");
++            FileOutputStream fos = new FileOutputStream("src/main/resources/fileTest123.txt");
+             ObjectOutputStream oos = new ObjectOutputStream(fos);
+             //Khai báo mảng
+-            Stock s[] = {
+-                    new Stock(1, "CD ROM", 100, 2)
+-                    ,new Stock(2, "CPU", 500, 2)
+-                    ,new Stock(3, "HP Scanner", 75, 1)
+-            };
++//            Stock s = new Stock(1, "CD ROM", 100, 2);
++//            Stock s1 = new Stock(2, "ASDASD", 100, 2);
++            Stock s2 = new Stock(3, "ASDASD", 100, 2);
++            Stock s3 = new Stock(5, "43234", 100, 2);
+             //Bước 2: Ghi mảng đối tượng vào file
+-            oos.writeObject(s);
++            oos.writeObject(s3);
+             //Bước 3: Đóng luồng
+             fos.close();
+             oos.close();
+Index: src/main/java/File_handing/AppendableObjectOutputStream.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/AppendableObjectOutputStream.java b/src/main/java/File_handing/AppendableObjectOutputStream.java
+new file mode 100644
+--- /dev/null	(date 1680692272933)
++++ b/src/main/java/File_handing/AppendableObjectOutputStream.java	(date 1680692272933)
+@@ -0,0 +1,33 @@
++package File_handing;
++import java.io.DataOutputStream;
++import java.io.IOException;
++import java.io.ObjectOutputStream;
++import java.io.OutputStream;
++public class AppendableObjectOutputStream extends ObjectOutputStream {
++    private boolean append;
++    private boolean initialized;
++    private DataOutputStream dout;
++
++    protected AppendableObjectOutputStream(boolean append) throws IOException, SecurityException {
++        super();
++        this.append = append;
++        this.initialized = true;
++    }
++
++    public AppendableObjectOutputStream(OutputStream out, boolean append) throws IOException {
++        super(out);
++        this.append = append;
++        this.initialized = true;
++        this.dout = new DataOutputStream(out);
++        this.writeStreamHeader();
++    }
++
++    @Override
++    protected void writeStreamHeader() throws IOException {
++        if (!this.initialized || this.append) return;
++        if (dout != null) {
++            dout.writeShort(STREAM_MAGIC);
++            dout.writeShort(STREAM_VERSION);
++        }
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"77e03ab3-dd77-453a-9dbf-29a5a12eb52e\" name=\"Changes\" comment=\"IoC and DI :v\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/CSV/Country.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/CSV/CsvReaderExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/CSV/CsvWriterExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/DataInputExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/DataOutputExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/FileReaderExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/FileWriterExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/File_handing/Stock.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Stream/MinMaxStreamExample2.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/fileTest.txt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/fileTest2.txt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/fileTest3.txt\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"package-info\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/DSAA/ArrayDataStructure/Bai5.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2I4Xuxm85qciwJNIMR8SWCR6Slf\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"D:/HocJava/FirstJava1\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"editor.preferences.fonts.default\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Application.CsvReaderExample\">\r\n    <configuration name=\"CsvReaderExample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"CSV.CsvReaderExample\" />\r\n      <module name=\"HocLapTrinhJava-master\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"CSV.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"CsvWriteExample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"CSV.CsvWriteExample\" />\r\n      <module name=\"HocLapTrinhJava-master\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"CSV.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"CsvWriterExample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"CSV.CsvWriterExample\" />\r\n      <module name=\"HocLapTrinhJava-master\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"CSV.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ObjectInputExample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"File_handing.ObjectInputExample\" />\r\n      <module name=\"HocLapTrinhJava-master\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"File_handing.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ObjectOutputExample\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"File_handing.ObjectOutputExample\" />\r\n      <module name=\"HocLapTrinhJava-master\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"File_handing.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.CsvReaderExample\" />\r\n        <item itemvalue=\"Application.ObjectInputExample\" />\r\n        <item itemvalue=\"Application.CsvWriterExample\" />\r\n        <item itemvalue=\"Application.CsvWriteExample\" />\r\n        <item itemvalue=\"Application.ObjectOutputExample\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"77e03ab3-dd77-453a-9dbf-29a5a12eb52e\" name=\"Changes\" comment=\"\" />\r\n      <created>1669442060337</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669442060337</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"arrays in java :v\">\r\n      <created>1669872479714</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669872479714</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"max a\">\r\n      <created>1669898802300</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669898802300</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"ex array:v\">\r\n      <created>1669970546729</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669970546729</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"String in java:v\">\r\n      <created>1669976075156</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669976075156</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"update string :v\">\r\n      <created>1670059546199</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670059546199</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"update string :))\">\r\n      <created>1670062270176</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670062270176</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"method:v\">\r\n      <created>1670229546362</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670229546362</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"method update:d\">\r\n      <created>1670467546066</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670467546067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\" for loop ex :v\">\r\n      <created>1670470556150</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670470556151</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\" for loop ex :c\">\r\n      <created>1670471582733</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670471582733</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"oop in java :d\">\r\n      <created>1670836268848</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670836268848</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Static variables, static methods :v\">\r\n      <created>1670925434609</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1670925434609</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"pack , getter, setter :d\">\r\n      <created>1671018800327</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671018800327</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"PTb2 :d\">\r\n      <created>1671218083146</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671218083147</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\" update PTb2 :v\">\r\n      <created>1671219157077</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671219157077</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Inheritance in java :v\">\r\n      <created>1671529889202</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671529889202</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"up-casting and down-casting :v\">\r\n      <created>1671695019404</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671695019404</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"interface in java:d\">\r\n      <created>1671703837399</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671703837399</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Relationships between objects :d\">\r\n      <created>1671853653257</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671853653257</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Ex oop :v\">\r\n      <created>1672134351807</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1672134351807</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"Ex oop update :v\">\r\n      <created>1672474933010</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1672474933010</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"Ex Basic algorithms :v\">\r\n      <created>1672479082243</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1672479082243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Array data structure :v\">\r\n      <created>1672646617007</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1672646617007</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"Array data structure :d\">\r\n      <created>1672836876304</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1672836876304</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"Ex OOP :d\">\r\n      <created>1673376705810</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673376705810</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00033\" summary=\"DSAA update :d\">\r\n      <created>1673378781988</created>\r\n      <option name=\"number\" value=\"00033\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673378781988</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00034\" summary=\"Ex oop :d\">\r\n      <created>1673593390857</created>\r\n      <option name=\"number\" value=\"00034\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673593390857</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00035\" summary=\"Ex oop update :d\">\r\n      <created>1673598480727</created>\r\n      <option name=\"number\" value=\"00035\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673598480727</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00036\" summary=\"Ex oop update :D\">\r\n      <created>1673603870722</created>\r\n      <option name=\"number\" value=\"00036\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673603870722</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00037\" summary=\"DSSA update :v\">\r\n      <created>1673693206391</created>\r\n      <option name=\"number\" value=\"00037\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1673693206391</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00038\" summary=\"DSSA update :3\">\r\n      <created>1675072084378</created>\r\n      <option name=\"number\" value=\"00038\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00038\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675072084378</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00039\" summary=\"DSSA update :d\">\r\n      <created>1675157122121</created>\r\n      <option name=\"number\" value=\"00039\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00039\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675157122122</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00040\" summary=\"ArrayList :d\">\r\n      <created>1675242925773</created>\r\n      <option name=\"number\" value=\"00040\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00040\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675242925774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00041\" summary=\"LinkedList :d\">\r\n      <created>1675330484633</created>\r\n      <option name=\"number\" value=\"00041\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00041\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675330484634</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00042\" summary=\"LinkedList update :v\">\r\n      <created>1675332967410</created>\r\n      <option name=\"number\" value=\"00042\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00042\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675332967410</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00043\" summary=\"LinkedList update :v\">\r\n      <created>1675419774854</created>\r\n      <option name=\"number\" value=\"00043\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00043\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675419774854</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00044\" summary=\"LinkedList update :d\">\r\n      <created>1675503301303</created>\r\n      <option name=\"number\" value=\"00044\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00044\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675503301304</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00045\" summary=\"giải thuật tìm kiếm :d\">\r\n      <created>1675675082639</created>\r\n      <option name=\"number\" value=\"00045\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00045\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675675082639</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00046\" summary=\"sort :d\">\r\n      <created>1675848017333</created>\r\n      <option name=\"number\" value=\"00046\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00046\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675848017333</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00047\" summary=\"sort :d\">\r\n      <created>1675871300150</created>\r\n      <option name=\"number\" value=\"00047\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00047\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1675871300150</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00048\" summary=\"sort :d\">\r\n      <created>1676881392198</created>\r\n      <option name=\"number\" value=\"00048\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00048\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1676881392198</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00049\" summary=\"Shell Sort :d\">\r\n      <created>1676968437997</created>\r\n      <option name=\"number\" value=\"00049\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00049\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1676968437997</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00050\" summary=\"Quick Sort :v\">\r\n      <created>1676971001409</created>\r\n      <option name=\"number\" value=\"00050\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00050\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1676971001410</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00051\" summary=\"Quick Sort update :d\">\r\n      <created>1677056435696</created>\r\n      <option name=\"number\" value=\"00051\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00051\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677056435696</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00052\" summary=\"Tree data structure :d\">\r\n      <created>1677318475406</created>\r\n      <option name=\"number\" value=\"00052\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00052\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677318475407</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00053\" summary=\"Tree data structure update :d\">\r\n      <created>1677339568642</created>\r\n      <option name=\"number\" value=\"00053\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00053\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677339568644</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00054\" summary=\"Tree data structure update :d\">\r\n      <created>1677405433069</created>\r\n      <option name=\"number\" value=\"00054\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00054\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677405433070</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00055\" summary=\"IoC and DI :d\">\r\n      <created>1677557527360</created>\r\n      <option name=\"number\" value=\"00055\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00055\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677557527361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00056\" summary=\"IoC and DI :v\">\r\n      <created>1677680727427</created>\r\n      <option name=\"number\" value=\"00056\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00056\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1677680727428</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"57\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"9c084c15-fe78-43a0-a2b5-e2cc3ef3a126\">\r\n          <value>\r\n            <State>\r\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\r\n                <map>\r\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"OPEN_GENERIC_TABS\">\r\n      <map>\r\n        <entry key=\"9c084c15-fe78-43a0-a2b5-e2cc3ef3a126\" value=\"TOOL_WINDOW\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"DSSA update :3\" />\r\n    <MESSAGE value=\"DSSA update :v\" />\r\n    <MESSAGE value=\"DSSA update :d\" />\r\n    <MESSAGE value=\"ArrayList :v\" />\r\n    <MESSAGE value=\"ArrayList :d\" />\r\n    <MESSAGE value=\"LinkedList :v\" />\r\n    <MESSAGE value=\"LinkedList :d\" />\r\n    <MESSAGE value=\"LinkedList update\" />\r\n    <MESSAGE value=\"LinkedList update :v\" />\r\n    <MESSAGE value=\"LinkedList update :d\" />\r\n    <MESSAGE value=\"giải thuật tìm kiếm :v\" />\r\n    <MESSAGE value=\"giải thuật tìm kiếm :d\" />\r\n    <MESSAGE value=\"sort :v\" />\r\n    <MESSAGE value=\"sort :d\" />\r\n    <MESSAGE value=\"Shell Sort :v\" />\r\n    <MESSAGE value=\"Shell Sort :d\" />\r\n    <MESSAGE value=\"Quick Sort :v\" />\r\n    <MESSAGE value=\"Quick Sort update :v\" />\r\n    <MESSAGE value=\"Quick Sort update :d\" />\r\n    <MESSAGE value=\"Tree data structure :v\" />\r\n    <MESSAGE value=\"Tree data structure :d\" />\r\n    <MESSAGE value=\"Tree data structure update :v\" />\r\n    <MESSAGE value=\"Tree data structure update :d\" />\r\n    <MESSAGE value=\"IoC and DI :d\" />\r\n    <MESSAGE value=\"IoC and DI :v\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"IoC and DI :v\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.ArrayIndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/DSAA/ArrayDataStructure/Bai5.java</url>\r\n          <line>21</line>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/DSAA/SortAlgorithm/Bai4.java</url>\r\n          <line>40</line>\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/DSAA/SortAlgorithm/Bai4.java</url>\r\n          <line>37</line>\r\n          <option name=\"timeStamp\" value=\"4\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-method\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java</url>\r\n          <line>7</line>\r\n          <properties class=\"File_handing.ObjectInputExample\" method=\"main\">\r\n            <option name=\"EMULATED\" value=\"true\" />\r\n            <option name=\"WATCH_EXIT\" value=\"false\" />\r\n          </properties>\r\n          <option name=\"timeStamp\" value=\"5\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/.idea/workspace.xml	(date 1680743800009)
+@@ -4,21 +4,22 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="IoC and DI :v">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/CSV/Country.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/CSV/CsvReaderExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/CSV/CsvWriterExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/DataInputExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/DataOutputExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/FileReaderExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/FileWriterExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/Stock.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Stream/MinMaxStreamExample2.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/fileTest.txt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/fileTest2.txt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/fileTest3.txt" afterDir="false" />
++    <list default="true" id="77e03ab3-dd77-453a-9dbf-29a5a12eb52e" name="Changes" comment="Update :v">
++      <change afterPath="$PROJECT_DIR$/src/main/java/CSV/ApacheCsvReaderExample.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/CSV/ApacheCsvWriterExample.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/AppendableObjectOutputStream.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputStream.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputStream.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectWriter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/CSV/CsvWriterExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSV/CsvWriterExample.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/DataInputExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/DataInputExample.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/DataOutputExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/DataOutputExample.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/File_handing/ObjectOutputExample.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/fileTest2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fileTest2.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/fileTest3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fileTest3.txt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -36,6 +37,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+@@ -54,20 +60,20 @@
+   "keyToString": {
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "last_opened_file_path": "D:/HocJava/FirstJava1",
++    "last_opened_file_path": "D:/Thanh_Ha_Nguyen/HocLapTrinhJava-master",
+     "project.structure.last.edited": "Modules",
+     "project.structure.proportion": "0.0",
+     "project.structure.side.proportion": "0.0",
+     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+   }
+ }]]></component>
+-  <component name="RunManager" selected="Application.CsvReaderExample">
+-    <configuration name="CsvReaderExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="CSV.CsvReaderExample" />
++  <component name="RunManager" selected="Application.ObjectInputStream">
++    <configuration name="DataInputExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="File_handing.DataInputExample" />
+       <module name="HocLapTrinhJava-master" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="CSV.*" />
++          <option name="PATTERN" value="File_handing.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -75,12 +81,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="CsvWriteExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="CSV.CsvWriteExample" />
++    <configuration name="DataOutputExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="File_handing.DataOutputExample" />
+       <module name="HocLapTrinhJava-master" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="CSV.*" />
++          <option name="PATTERN" value="File_handing.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -88,12 +94,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="CsvWriterExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="CSV.CsvWriterExample" />
++    <configuration name="FileReaderExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="File_handing.FileReaderExample" />
+       <module name="HocLapTrinhJava-master" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="CSV.*" />
++          <option name="PATTERN" value="File_handing.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -101,8 +107,8 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ObjectInputExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectInputExample" />
++    <configuration name="ObjectInputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectInputStream" />
+       <module name="HocLapTrinhJava-master" />
+       <extension name="coverage">
+         <pattern>
+@@ -114,8 +120,8 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ObjectOutputExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectOutputExample" />
++    <configuration name="ObjectOutputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="File_handing.ObjectOutputStream" />
+       <module name="HocLapTrinhJava-master" />
+       <extension name="coverage">
+         <pattern>
+@@ -129,11 +135,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.CsvReaderExample" />
+-        <item itemvalue="Application.ObjectInputExample" />
+-        <item itemvalue="Application.CsvWriterExample" />
+-        <item itemvalue="Application.CsvWriteExample" />
+-        <item itemvalue="Application.ObjectOutputExample" />
++        <item itemvalue="Application.ObjectInputStream" />
++        <item itemvalue="Application.ObjectOutputStream" />
++        <item itemvalue="Application.DataOutputExample" />
++        <item itemvalue="Application.DataInputExample" />
++        <item itemvalue="Application.FileReaderExample" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -145,20 +151,6 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1669442060337</updated>
+-    </task>
+-    <task id="LOCAL-00008" summary="arrays in java :v">
+-      <created>1669872479714</created>
+-      <option name="number" value="00008" />
+-      <option name="presentableId" value="LOCAL-00008" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1669872479714</updated>
+-    </task>
+-    <task id="LOCAL-00009" summary="max a">
+-      <created>1669898802300</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1669898802300</updated>
+     </task>
+     <task id="LOCAL-00010" summary="ex array:v">
+       <created>1669970546729</created>
+@@ -489,7 +481,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1677680727428</updated>
+     </task>
+-    <option name="localTasksCounter" value="57" />
++    <task id="LOCAL-00057" summary="Update :v">
++      <created>1680683460446</created>
++      <option name="number" value="00057" />
++      <option name="presentableId" value="LOCAL-00057" />
++      <option name="project" value="LOCAL" />
++      <updated>1680683460446</updated>
++    </task>
++    <task id="LOCAL-00058" summary="Update :v">
++      <created>1680683554953</created>
++      <option name="number" value="00058" />
++      <option name="presentableId" value="LOCAL-00058" />
++      <option name="project" value="LOCAL" />
++      <updated>1680683554953</updated>
++    </task>
++    <option name="localTasksCounter" value="59" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -520,7 +526,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="DSSA update :3" />
+     <MESSAGE value="DSSA update :v" />
+     <MESSAGE value="DSSA update :d" />
+     <MESSAGE value="ArrayList :v" />
+@@ -545,7 +550,8 @@
+     <MESSAGE value="Tree data structure update :d" />
+     <MESSAGE value="IoC and DI :d" />
+     <MESSAGE value="IoC and DI :v" />
+-    <option name="LAST_COMMIT_MESSAGE" value="IoC and DI :v" />
++    <MESSAGE value="Update :v" />
++    <option name="LAST_COMMIT_MESSAGE" value="Update :v" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -571,12 +577,30 @@
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-method">
+           <url>file://$PROJECT_DIR$/src/main/java/File_handing/ObjectInputExample.java</url>
+-          <line>7</line>
++          <line>9</line>
+           <properties class="File_handing.ObjectInputExample" method="main">
+             <option name="EMULATED" value="true" />
+             <option name="WATCH_EXIT" value="false" />
+           </properties>
+           <option name="timeStamp" value="5" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/main/java/File_handing/DataInputExample.java</url>
++          <line>4</line>
++          <properties class="File_handing.DataInputExample" method="main">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
++          <option name="timeStamp" value="8" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/main/java/File_handing/ObjectInputStream.java</url>
++          <line>3</line>
++          <properties class="File_handing.ObjectInputStream" method="main">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
++          <option name="timeStamp" value="9" />
+         </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n  xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n  <modelVersion>4.0.0</modelVersion>\r\n\r\n  <groupId>org.example</groupId>\r\n  <artifactId>FirstJava1</artifactId>\r\n  <version>1.0-SNAPSHOT</version>\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <configuration>\r\n                    <source>8</source>\r\n                    <target>8</target>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n    <packaging>jar</packaging>\r\n\r\n  <name>FirstJava1</name>\r\n  <url>http://maven.apache.org</url>\r\n\r\n  <properties>\r\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n  </properties>\r\n\r\n  <dependencies>\r\n    <dependency>\r\n      <groupId>junit</groupId>\r\n      <artifactId>junit</artifactId>\r\n      <version>3.8.1</version>\r\n      <scope>test</scope>\r\n    </dependency>\r\n  </dependencies>\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/pom.xml	(date 1680683797345)
+@@ -33,5 +33,10 @@
+       <version>3.8.1</version>
+       <scope>test</scope>
+     </dependency>
++      <dependency>
++          <groupId>org.apache.commons</groupId>
++          <artifactId>commons-csv</artifactId>
++          <version>1.4</version>
++      </dependency>
+   </dependencies>
+ </project>
+Index: src/main/java/File_handing/DataOutputExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package File_handing;\r\n\r\nimport java.io.DataOutputStream;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\n\r\npublic class DataOutputExample {\r\n    public static void main(String[] args) {\r\n        try {\r\n            FileOutputStream file = new FileOutputStream(\"src/main/resources/fileTest2.txt\");\r\n            DataOutputStream dataOutputStream = new DataOutputStream(file);\r\n            dataOutputStream.writeInt(100);\r\n            dataOutputStream.writeDouble(59);\r\n            file.close();\r\n            dataOutputStream.close();\r\n            System.out.println(\"done\");\r\n        }catch (IOException exception){\r\n            exception.printStackTrace();\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/DataOutputExample.java b/src/main/java/File_handing/DataOutputExample.java
+--- a/src/main/java/File_handing/DataOutputExample.java	(revision 017bcbddf05ec8bd4a90b131956f217a848826ac)
++++ b/src/main/java/File_handing/DataOutputExample.java	(date 1680690400031)
+@@ -1,17 +1,14 @@
+ package File_handing;
+ 
+-import java.io.DataOutputStream;
+-import java.io.FileNotFoundException;
+-import java.io.FileOutputStream;
+-import java.io.IOException;
++import java.io.*;
+ 
+ public class DataOutputExample {
+     public static void main(String[] args) {
+         try {
+-            FileOutputStream file = new FileOutputStream("src/main/resources/fileTest2.txt");
++            FileOutputStream file = new FileOutputStream("src/main/resources/fileTest2.txt",true);
+             DataOutputStream dataOutputStream = new DataOutputStream(file);
+-            dataOutputStream.writeInt(100);
+-            dataOutputStream.writeDouble(59);
++//            dataOutputStream.writeInt(4);
++            dataOutputStream.writeInt(5);
+             file.close();
+             dataOutputStream.close();
+             System.out.println("done");
+Index: src/main/java/File_handing/ObjectWriter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/File_handing/ObjectWriter.java b/src/main/java/File_handing/ObjectWriter.java
+new file mode 100644
+--- /dev/null	(date 1680743799915)
++++ b/src/main/java/File_handing/ObjectWriter.java	(date 1680743799915)
+@@ -0,0 +1,25 @@
++package File_handing;
++
++import java.io.File;
++import java.io.FileNotFoundException;
++import java.io.FileOutputStream;
++import java.io.IOException;
++
++public class ObjectWriter {
++    public static void main(String[] args) {
++        File file = new File("file.dat");
++        boolean append = file.exists(); // if file exists then append, otherwise create new
++
++        try (
++                FileOutputStream fout = new FileOutputStream(file, append);
++                AppendableObjectOutputStream oout = new AppendableObjectOutputStream(fout, append);
++        ) {
++
++//            oout.writeObject(); // replace "..." with serializable object to be written
++        } catch (FileNotFoundException e) {
++            e.printStackTrace();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++}
++}
